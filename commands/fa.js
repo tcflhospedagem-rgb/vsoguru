@@ -26,7 +26,14 @@ module.exports = {
 
     if (!ALLOWED_FA_CHANNELS.includes(interaction.channelId)) {
       return interaction.editReply({
-        embeds: [new EmbedBuilder().setColor(0xed4245).setTitle('❌ Canal Não Permitido').setDescription('Este comando só pode ser utilizado em canais específicos.').setFooter({ text: 'BCS 2K26' }).setTimestamp()]
+        embeds: [
+          new EmbedBuilder()
+            .setColor(0xed4245)
+            .setTitle('❌ Canal Não Permitido')
+            .setDescription(`Este comando só pode ser utilizado em: ${ALLOWED_FA_CHANNELS.map(id => `<#${id}>`).join(', ')}`)
+            .setFooter({ text: `ID deste canal: ${interaction.channelId}` })
+            .setTimestamp()
+        ]
       });
     }
 
